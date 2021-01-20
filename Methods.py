@@ -31,7 +31,6 @@ import matplotlib.pyplot as plt
 
 from sklearn.linear_model import LassoCV
 from sklearn.feature_selection import RFECV
-from sklearn.naive_bayes import GaussianNB
 import xlwt
 from sklearn.metrics import make_scorer
 import xgboost as xgb
