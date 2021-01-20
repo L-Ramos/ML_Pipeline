@@ -5,6 +5,8 @@ Created on Fri Sep  4 18:38:43 2020
 @author: laramos
 """
 
+import numpy as np
+
 class Measures:       
     def __init__(self,splits):
         
@@ -33,7 +35,9 @@ class Measures:
         self.labels = list()
         self.preds=list()
         self.shap_values = list()
-        self.test_sets = list()
+        self.test_index = list()
+        self.test_set = list()
+        self.feat_names = []
 
 def get_SVM():
     
@@ -62,7 +66,7 @@ def get_LR():
         tuned_parameters = {
         'clf__C': [0.001, 0.01, 0.1, 1, 10, 100],
         'clf__solver' : ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga'],
-        'clf__max_inter' : [5000]}
+        'clf__max_inter' : 5000}
         return(tuned_parameters)
         
 def get_NN():

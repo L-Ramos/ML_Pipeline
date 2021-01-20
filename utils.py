@@ -5,7 +5,7 @@ Created on Fri Mar 27 10:22:42 2020
 @author: laramos
 """
 import re
-from missingpy import KNNImputer,MissForest
+#from missingpy import KNNImputer,MissForest
 import numpy as np
 import pandas as pd
 import os
@@ -15,40 +15,40 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler, Normalizer
 
 class Measures:       
     def __init__(self,splits):
-        self.clf_auc=np.zeros(splits)
-        self.clf_brier=np.zeros(splits)
+        self.auc = np.zeros(splits)
+        self.brier = np.zeros(splits)
                         
-        self.clf_f1_score=np.zeros(splits)
-        self.clf_sens=np.zeros(splits)
-        self.clf_spec=np.zeros(splits)
-        self.clf_ppv=np.zeros(splits)
-        self.clf_npv=np.zeros(splits)
+        self.f1_score = np.zeros(splits)
+        self.sens = np.zeros(splits)
+        self.spec = np.zeros(splits)
+        self.ppv = np.zeros(splits)
+        self.npv = np.zeros(splits)
         
-        self.clf_fp=np.zeros(splits)
-        self.clf_fn=np.zeros(splits)
-        self.clf_tp=np.zeros(splits)
-        self.clf_tn=np.zeros(splits)
+        self.fp = np.zeros(splits)
+        self.fn = np.zeros(splits)
+        self.tp = np.zeros(splits)
+        self.tn = np.zeros(splits)
         
-        self.clf_r2=np.zeros(splits)
-        self.clf_mae=np.zeros(splits) 
-        self.clf_mse=np.zeros(splits) 
-        self.clf_mdae=np.zeros(splits)
+        # self.clf_r2=np.zeros(splits)
+        # self.clf_mae=np.zeros(splits) 
+        # self.clf_mse=np.zeros(splits) 
+        # self.clf_mdae=np.zeros(splits)
         
-        self.clf_r_mae=np.zeros(splits) 
-        self.clf_r_mse=np.zeros(splits) 
-        self.clf_r_mdae=np.zeros(splits)
+        # self.clf_r_mae=np.zeros(splits) 
+        # self.clf_r_mse=np.zeros(splits) 
+        # self.clf_r_mdae=np.zeros(splits)
         
         self.auc_prc = np.zeros(splits)
         self.mcc = np.zeros(splits)
         self.bacc = np.zeros(splits)
         
-        self.clf_tpr=list()
-        self.clf_fpr=list()
-        self.mean_tpr=0.0
-        self.run=False
-        self.feat_imp=list() 
-        self.probas=list()
-        self.preds=list()
+        self.clf_tpr = list()
+        self.clf_fpr = list()
+        self.mean_tpr = 0.0
+        self.run = False
+        self.feat_imp = list() 
+        self.probas = list()
+        self.labels = list()
         self.shap_values = list()
         self.test_sets = list()
 
@@ -597,7 +597,8 @@ def create_measures(splits):
     lr_m = Measures(splits)
     xgb_m = Measures(splits)
     nn_m = Measures(splits) 
-    return rfc_m,svm_m,lr_m,xgb_m,nn_m
+    meas = [rfc_m,svm_m,lr_m,xgb_m,nn_m]
+    return rfc_m,svm_m,lr_m,xgb_m,nn_m,meas
 
 
 def load_imputed_merge_scale(path_all_imp_data,l,label,frame_img,vals_mask,mask_cont,mask_cat,mask_cont_all,cols_img,data_to_use,task,var):
