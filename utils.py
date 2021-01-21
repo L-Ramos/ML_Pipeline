@@ -114,6 +114,7 @@ def Change_One_Hot_DL(X_train_imp,X_val_imp,X_test_imp,vals_mask):
 	   
 	   
 def create_measures(splits):
+#Creats all measure variables for each classifier
     rfc_m = Measures(splits)
     svm_m = Measures(splits)
     lr_m = Measures(splits)
